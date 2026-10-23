@@ -148,11 +148,6 @@ function EmployeeList({ notify }) {
         eyebrow="WORKSPACE / PEOPLE"
         title="Employees"
         subtitle="Manage your people, view workloads, and track team status."
-        action={
-          <Button to="/employees/new" icon={Plus}>
-            Add employee
-          </Button>
-        }
       />
 
       <div className="list-toolbar reference-toolbar">
