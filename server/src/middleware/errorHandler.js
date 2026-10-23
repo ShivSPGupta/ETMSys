@@ -1,4 +1,5 @@
 export default function errorHandler(err, _req, res, _next) {
+  console.error("API Error:", err);
   if (err.code === 11000) {
     const duplicateEmail = Boolean(err.keyPattern?.email);
     return res
