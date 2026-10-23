@@ -1,0 +1,11 @@
+import { Router } from "express";
+import * as controller from "../controllers/taskController.js";
+const router = Router();
+router.get("/export", controller.exportCsv);
+router.get("/", controller.list);
+router.post("/", controller.create);
+router.put("/:id/status", controller.updateStatus);
+router.get("/:id", controller.get);
+router.put("/:id", controller.update);
+router.delete("/:id", controller.remove);
+export default router;
