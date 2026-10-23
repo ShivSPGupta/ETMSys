@@ -361,62 +361,265 @@ body {
   color: #fff;
 }
 .form-page {
-  max-width: 780px;
+  width: 100%;
+  max-width: 100%;
+}
+.form-page .back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #71777d;
+  font-size: 11px;
+  font-weight: 500;
+  text-decoration: none;
+  margin-bottom: 12px;
+  transition: color 0.15s ease;
+}
+.form-page .back-link:hover {
+  color: #9c514e;
 }
 .form-page > .page-title-row {
-  justify-content: center;
-  margin: 16px 0 10px;
-  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin: 0 0 20px;
+  text-align: left;
 }
 .form-page > .page-title-row > div {
-  width: 100%;
+  width: auto;
 }
-.form-page > .page-title-row .eyebrow,
-.form-page > .page-title-row p {
-  display: none;
+.form-page > .page-title-row .eyebrow {
+  display: block;
+  color: #9c514e;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  margin-bottom: 4px;
 }
 .form-page > .page-title-row h1 {
+  display: block;
+  font-size: 23px;
+  font-weight: 700;
+  color: #292c31;
   margin: 0;
-  font-size: 22px;
+  line-height: 1.2;
+}
+.form-page > .page-title-row p {
+  display: block;
+  font-size: 12px;
+  color: #687078;
+  margin: 4px 0 0;
 }
 .form-panel {
-  max-width: 584px;
-  margin: 0 auto;
-  padding: 17px 19px;
+  max-width: 860px;
+  margin: 0;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 22px 24px;
   border: 1px solid #d9dde0;
-  border-radius: 5px;
-  box-shadow: 0 1px 3px #0000000b;
+  border-radius: 6px;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
 }
 .form-section-title {
-  display: none;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #eef0f3;
+  margin-bottom: 20px;
+}
+.form-section-title .section-icon {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 6px;
+  background: #fdf5f4;
+  color: #9c514e;
+  flex-shrink: 0;
+}
+.form-section-title b {
+  font-size: 13px;
+  font-weight: 700;
+  color: #292d31;
+  display: block;
+}
+.form-section-title p {
+  font-size: 11px;
+  color: #7a8288;
+  margin: 2px 0 0;
 }
 .form-grid {
-  gap: 12px 18px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px 20px;
 }
 .form-field {
-  gap: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
   color: #34393e;
-  font-size: 10px;
-  font-weight: 500;
+  font-size: 11px;
+  font-weight: 600;
 }
-.form-field input,
-.form-field select,
-.form-field textarea,
-.skill-input {
-  border-color: #cbd1d7;
-  border-radius: 4px;
-  font-size: 10px;
+.form-field span {
+  font-size: 11px;
+  font-weight: 600;
+  color: #34393e;
 }
 .form-field input,
 .form-field select {
-  height: 29px;
+  height: 34px;
+  padding: 0 10px;
+  border: 1px solid #cbd1d7;
+  border-radius: 4px;
+  font-size: 11px;
+  color: #292d31;
+  background: #fff;
+  box-sizing: border-box;
+  width: 100%;
+  font-family: inherit;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.form-field textarea {
+  min-height: 85px;
+  padding: 8px 10px;
+  border: 1px solid #cbd1d7;
+  border-radius: 4px;
+  font-size: 11px;
+  font-family: inherit;
+  color: #292d31;
+  background: #fff;
+  box-sizing: border-box;
+  width: 100%;
+  resize: vertical;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+  border-color: #9c514e;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(156, 81, 78, 0.15);
+}
+.form-field.wide {
+  grid-column: 1 / -1;
+}
+.field-error {
+  color: #bf3e3b;
+  font-size: 10px;
+  font-weight: 500;
+  margin-top: 3px;
+}
+.skill-input {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+}
+.skill-input input {
+  flex: 1;
+  height: 34px;
+}
+.skill-input button {
+  flex: none;
+  height: 34px;
+  padding: 0 14px;
+  background: #9c514e;
+  color: #fff;
+  border: 1px solid #9c514e;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+.skill-input button:hover {
+  background: #884340;
+}
+.skill-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+.skill-list > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #f0f2f5;
+  color: #34393e;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 500;
+}
+.skill-list > span button {
+  background: none;
+  border: 0;
+  color: #7a8288;
+  cursor: pointer;
+  padding: 0;
+  display: grid;
+  place-items: center;
+}
+.skill-list > span button:hover {
+  color: #bf3e3b;
 }
 .capacity-note {
-  font-size: 9px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: #fdfaf3;
+  border: 1px solid #fae8c8;
+  color: #9c6819;
+  padding: 9px 13px;
+  border-radius: 4px;
+  font-size: 10px;
+  margin: 16px 0 0;
+  line-height: 1.4;
 }
 .form-footer {
-  margin-top: 14px;
-  padding-top: 12px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px;
+  border-top: 1px solid #eef0f3;
+  margin-top: 20px;
+  padding-top: 16px;
+}
+.form-footer .button {
+  height: 32px;
+  padding: 0 14px;
+  font-size: 11px;
+  font-weight: 600;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  text-decoration: none;
+}
+.form-footer .button.secondary {
+  border: 1px solid #cbd1d7;
+  background: #fff;
+  color: #4c5257;
+}
+.form-footer .button.secondary:hover {
+  background: #f8f9fa;
+  border-color: #b5bcc3;
+}
+.form-footer .button.primary {
+  border: 1px solid #9c514e;
+  background: #9c514e;
+  color: #fff;
+}
+.form-footer .button.primary:hover {
+  background: #884340;
 }
 @media (max-width: 700px) {
   .main-area {
@@ -464,6 +667,7 @@ body {
   }
   .form-panel {
     padding: 15px 13px;
+    max-width: 100%;
   }
 }
 .sidebar.reference-navbar,
@@ -474,9 +678,6 @@ body {
 .reference-brand {
   top: 50%;
   transform: translate(-50%, -50%);
-}
-.form-page > .back-link {
-  display: none;
 }
 .dashboard-page {
   width: 100%;
