@@ -1899,9 +1899,9 @@ th button {
 }
 .main-area {
   width: 100%;
-  max-width: 1320px;
-  margin: 0 auto;
-  padding: 0 22px 30px;
+  max-width: 100%;
+  margin: 0;
+  padding: 0 28px 30px;
 }
 .topbar {
   display: none;
@@ -2315,87 +2315,6 @@ th button {
 }
 .reference-export svg {
   display: none;
-}
-@media (max-width: 700px) {
-  .sidebar.reference-navbar,
-  .sidebar.reference-navbar.collapsed {
-    height: auto;
-    min-height: 48px;
-    padding: 0 13px;
-    justify-content: center;
-  }
-  .reference-links {
-    gap: 18px;
-  }
-  .reference-links a {
-    font-size: 11px;
-  }
-  .reference-brand {
-    display: none;
-  }
-  .main-area {
-    padding: 0 12px 24px;
-  }
-  .page-content {
-    padding: 20px 0 28px;
-  }
-  .page-title-row {
-    align-items: flex-start;
-    gap: 8px;
-  }
-  .page-title-row h1 {
-    font-size: 21px;
-  }
-  .page-title-row p {
-    max-width: 230px;
-  }
-  .reference-actions {
-    gap: 5px;
-    flex-direction: column;
-  }
-  .reference-actions .button {
-    height: 31px;
-    font-size: 9px;
-    padding: 0 7px;
-  }
-  .reference-toolbar {
-    max-width: none;
-  }
-  .reference-toolbar .search-field {
-    max-width: none;
-  }
-  .reference-filters {
-    margin-bottom: 20px;
-  }
-  .reference-filters .filter-select select {
-    min-width: 0;
-    width: 100%;
-  }
-  .reference-filters .filter-select {
-    flex: 1 1 28%;
-  }
-  .due-range {
-    width: 100%;
-    justify-content: space-between;
-  }
-  .due-range .date-filter {
-    width: 36%;
-  }
-  .list-panel {
-    overflow: hidden;
-  }
-  .list-panel-heading {
-    padding: 0 7px;
-  }
-  .pagination {
-    padding: 0 7px;
-  }
-  .form-panel {
-    padding: 16px 13px;
-  }
-  .form-page .back-link {
-    margin-bottom: 14px;
-  }
 }
 .table-status:has(select)::after {
   content: "▾";

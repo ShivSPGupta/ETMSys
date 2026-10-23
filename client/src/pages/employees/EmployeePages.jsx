@@ -192,8 +192,7 @@ function EmployeeList({ notify }) {
         />
         {(q || dept || status) && (
           <button
-            className="button secondary"
-            style={{ height: "27px", fontSize: "10px", padding: "0 8px" }}
+            className="button secondary clear-filter-btn"
             onClick={() => setParams(new URLSearchParams())}
           >
             Clear filters
@@ -206,7 +205,7 @@ function EmployeeList({ notify }) {
           <div>
             <b>All employees</b>
             <span className="count-pill">{total}</span>
-            {loading && <small style={{ marginLeft: "8px", color: "#888" }}>Updating...</small>}
+            {loading && <small className="table-updating-indicator">Updating...</small>}
           </div>
         </div>
 
@@ -217,8 +216,8 @@ function EmployeeList({ notify }) {
                 <th>
                   EMPLOYEE{" "}
                   <button
+                    className="table-sort-button"
                     onClick={() => toggleSort("fullName")}
-                    style={{ background: "none", border: 0, color: "inherit", cursor: "pointer" }}
                     aria-label="Sort by Name"
                   >
                     <ArrowDownUp size={11} />
@@ -227,8 +226,8 @@ function EmployeeList({ notify }) {
                 <th>
                   EMPLOYEE ID{" "}
                   <button
+                    className="table-sort-button"
                     onClick={() => toggleSort("employeeId")}
-                    style={{ background: "none", border: 0, color: "inherit", cursor: "pointer" }}
                     aria-label="Sort by Employee ID"
                   >
                     <ArrowDownUp size={11} />
@@ -237,8 +236,8 @@ function EmployeeList({ notify }) {
                 <th>
                   DEPARTMENT{" "}
                   <button
+                    className="table-sort-button"
                     onClick={() => toggleSort("department")}
-                    style={{ background: "none", border: 0, color: "inherit", cursor: "pointer" }}
                     aria-label="Sort by Department"
                   >
                     <ArrowDownUp size={11} />
@@ -249,8 +248,8 @@ function EmployeeList({ notify }) {
                 <th>
                   JOINED{" "}
                   <button
+                    className="table-sort-button"
                     onClick={() => toggleSort("joiningDate")}
-                    style={{ background: "none", border: 0, color: "inherit", cursor: "pointer" }}
                     aria-label="Sort by Joining Date"
                   >
                     <ArrowDownUp size={11} />
@@ -262,7 +261,7 @@ function EmployeeList({ notify }) {
             <tbody>
               {loading && !employees.length ? (
                 <tr>
-                  <td colSpan="7" style={{ textAlign: "center", padding: "28px" }}>
+                  <td colSpan="7" className="table-empty-cell">
                     Loading employees...
                   </td>
                 </tr>
@@ -501,7 +500,7 @@ function EmployeeForm({ notify }) {
   if (loading) {
     return (
       <div className="page-content form-page">
-        <div style={{ textAlign: "center", padding: "40px" }}>Loading employee...</div>
+        <div className="page-loading-state">Loading employee...</div>
       </div>
     );
   }
@@ -681,7 +680,7 @@ function EmployeeForm({ notify }) {
                 <Plus size={15} /> Add
               </button>
             </div>
-            <div className="skill-list" style={{ marginTop: "6px" }}>
+            <div className="skill-list">
               {(form.skills || []).map((s, i) => (
                 <span key={`${s}-${i}`}>
                   {s}
@@ -748,7 +747,7 @@ function EmployeeView({ notify }) {
   if (loading) {
     return (
       <div className="page-content detail-page">
-        <div style={{ textAlign: "center", padding: "40px" }}>Loading profile...</div>
+        <div className="page-loading-state">Loading profile...</div>
       </div>
     );
   }
@@ -803,7 +802,7 @@ function EmployeeView({ notify }) {
         title={employee.fullName}
         subtitle={`${employee.role} · ${employee.department}`}
         action={
-          <div style={{ display: "flex", gap: "8px" }}>
+          <div className="header-actions">
             <Button
               to={`/employees/${id}/edit`}
               variant="secondary"
@@ -827,7 +826,7 @@ function EmployeeView({ notify }) {
           </p>
           <StatusBadge status={employee.status} />
           {employee.status === "On Leave" && employee.leaveStart && employee.leaveEnd && (
-            <small style={{ display: "block", marginTop: "4px", color: "#ba8739" }}>
+            <small className="leave-badge-note">
               Leave: {employee.leaveStart} to {employee.leaveEnd}
             </small>
           )}
@@ -871,7 +870,7 @@ function EmployeeView({ notify }) {
                   tasks.map((t) => <TaskRow key={t._id} task={t} />)
                 ) : (
                   <tr>
-                    <td colSpan="5" style={{ textAlign: "center", padding: "20px" }}>
+                    <td colSpan="5" className="table-empty-cell">
                       No tasks assigned to this employee.
                     </td>
                   </tr>
@@ -902,7 +901,7 @@ function EmployeeView({ notify }) {
             {employee.skills?.length ? (
               employee.skills.map((s) => <span key={s}>{s}</span>)
             ) : (
-              <small style={{ color: "#999" }}>No skills listed</small>
+              <small className="empty-text-note">No skills listed</small>
             )}
           </div>
         </aside>

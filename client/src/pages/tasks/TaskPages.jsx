@@ -276,8 +276,7 @@ function TaskList({ notify }) {
         </div>
         {(q || dept || priority || status || dueFrom || dueTo) && (
           <button
-            className="button secondary"
-            style={{ height: "27px", fontSize: "10px", padding: "0 8px" }}
+            className="button secondary clear-filter-btn"
             onClick={() => setParams(new URLSearchParams())}
           >
             Clear filters
@@ -290,7 +289,7 @@ function TaskList({ notify }) {
           <div>
             <b>All tasks</b>
             <span className="count-pill">{total}</span>
-            {loading && <small style={{ marginLeft: "8px", color: "#888" }}>Updating...</small>}
+            {loading && <small className="table-updating-indicator">Updating...</small>}
           </div>
           <div className="sort-control">
             <ArrowDownUp size={14} />
@@ -322,8 +321,8 @@ function TaskList({ notify }) {
                 <th>
                   TITLE{" "}
                   <button
+                    className="table-sort-button"
                     onClick={() => toggleSort("title")}
-                    style={{ background: "none", border: 0, color: "inherit", cursor: "pointer" }}
                     aria-label="Sort by Title"
                   >
                     <ArrowDownUp size={11} />
@@ -333,8 +332,8 @@ function TaskList({ notify }) {
                 <th>
                   PRIORITY{" "}
                   <button
+                    className="table-sort-button"
                     onClick={() => toggleSort("priority")}
-                    style={{ background: "none", border: 0, color: "inherit", cursor: "pointer" }}
                     aria-label="Sort by Priority"
                   >
                     <ArrowDownUp size={11} />
@@ -344,8 +343,8 @@ function TaskList({ notify }) {
                 <th>
                   DUE DATE{" "}
                   <button
+                    className="table-sort-button"
                     onClick={() => toggleSort("dueDate")}
-                    style={{ background: "none", border: 0, color: "inherit", cursor: "pointer" }}
                     aria-label="Sort by Due Date"
                   >
                     <ArrowDownUp size={11} />
@@ -357,7 +356,7 @@ function TaskList({ notify }) {
             <tbody>
               {loading && !tasks.length ? (
                 <tr>
-                  <td colSpan="7" style={{ textAlign: "center", padding: "28px" }}>
+                  <td colSpan="7" className="table-empty-cell">
                     Loading tasks...
                   </td>
                 </tr>
@@ -454,7 +453,7 @@ function TaskTableRow({
         ) : (
           <span className="assignee-cell" title="Employee profile no longer exists. Details retained from snapshot.">
             <Avatar name={who} size="small" />
-            <span style={{ fontStyle: "italic", opacity: 0.85 }}>{who}</span>
+            <span className="former-employee-label">{who}</span>
           </span>
         )}
       </td>
@@ -674,7 +673,7 @@ function TaskForm({ notify }) {
   if (loading) {
     return (
       <div className="page-content form-page">
-        <div style={{ textAlign: "center", padding: "40px" }}>Loading task...</div>
+        <div className="page-loading-state">Loading task...</div>
       </div>
     );
   }
@@ -844,7 +843,7 @@ function TaskView({ notify }) {
   if (loading) {
     return (
       <div className="page-content detail-page">
-        <div style={{ textAlign: "center", padding: "40px" }}>Loading task details...</div>
+        <div className="page-loading-state">Loading task details...</div>
       </div>
     );
   }
@@ -909,7 +908,7 @@ function TaskView({ notify }) {
         title={task.title}
         subtitle={`Task ID: ${task.taskId || `TSK-${String(task._id).slice(-6).toUpperCase()}`} · Created ${new Date(`${task.createdDate}T00:00:00`).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}`}
         action={
-          <div style={{ display: "flex", gap: "8px" }}>
+          <div className="header-actions">
             {!isTerminal && (
               <Button
                 to={`/tasks/${id}/edit`}
@@ -997,7 +996,7 @@ function TaskView({ notify }) {
               View employee profile <ChevronRight size={15} />
             </Link>
           ) : (
-            <span style={{ fontSize: "11px", color: "#888" }}>
+            <span className="assigned-meta-note">
               Employee was deleted. Historical details retained.
             </span>
           )}
@@ -1007,7 +1006,7 @@ function TaskView({ notify }) {
             <b>{task.taskId || `TSK-${String(task._id).slice(-6).toUpperCase()}`}</b>
           </div>
           {task.employeeSnapshot?.employeeId && (
-            <div className="assigned-summary" style={{ marginTop: "6px" }}>
+            <div className="assigned-summary">
               <span>Employee ID</span>
               <b>{task.employeeSnapshot.employeeId}</b>
             </div>

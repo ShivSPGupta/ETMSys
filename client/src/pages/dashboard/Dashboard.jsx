@@ -94,7 +94,7 @@ function Dashboard() {
         title="Dashboard"
         subtitle="Monitor team availability, organizational workload, and task distribution in real time."
         action={
-          <div style={{ display: "flex", gap: "7px" }}>
+          <div className="header-actions">
             <Button to="/tasks/new" icon={Plus}>
               Add Task
             </Button>
@@ -106,11 +106,8 @@ function Dashboard() {
       />
 
       {error ? (
-        <div
-          className="panel error-banner"
-          style={{ padding: "16px", marginBottom: "16px" }}
-        >
-          <p style={{ color: "#bf3e3b", margin: "0 0 8px" }}>{error}</p>
+        <div className="panel error-banner">
+          <p className="error-banner-text">{error}</p>
           <button className="button primary" onClick={fetchDashboard}>
             Retry
           </button>
@@ -169,7 +166,7 @@ function Dashboard() {
               {workload.length} Active Members
             </span>
             {loading && (
-              <small style={{ marginLeft: "8px", color: "#888" }}>
+              <small className="table-updating-indicator">
                 Updating...
               </small>
             )}
@@ -194,13 +191,13 @@ function Dashboard() {
             <tbody>
               {loading && !workload.length ? (
                 <tr>
-                  <td colSpan="6" style={{ textAlign: "center", padding: "24px" }}>
+                  <td colSpan="6" className="table-empty-cell">
                     Loading employee workload...
                   </td>
                 </tr>
               ) : workload.length ? (
                 workload.map((emp) => {
-                  const pct = Math.min(100, Math.round((emp.activeTasks / 3) * 100));
+                  const pct = Math.min(100, Math.round(((emp.activeTasks || 0) / 3) * 100));
                   const stateClass =
                     emp.activeTasks >= 3
                       ? "full"
@@ -235,10 +232,10 @@ function Dashboard() {
                       </td>
                       <td>
                         <b>{emp.activeTasks}</b>{" "}
-                        <small style={{ color: "#777" }}>/ 3 active</small>
+                        <small className="empty-text-note">/ 3 active</small>
                       </td>
-                      <td>
-                        <span style={{ fontSize: "10px", fontWeight: 600 }}>
+                      <td className="capacity-cell">
+                        <span className="capacity-pct">
                           {pct}%
                         </span>
                         <span className="capacity-track">
@@ -254,37 +251,23 @@ function Dashboard() {
                         </span>
                       </td>
                       <td>
-                        <div style={{ display: "flex", gap: "10px" }}>
+                        <div className="workload-action-group">
                           <Link
                             to={`/tasks?search=${encodeURIComponent(emp.fullName)}`}
-                            style={{
-                              color: "#4c8a67",
-                              fontSize: "10px",
-                              textDecoration: "none",
-                              fontWeight: 600,
-                            }}
+                            className="workload-action-link primary"
                           >
                             View tasks
                           </Link>
                           {emp.activeTasks < 3 ? (
                             <Link
                               to="/tasks/new"
-                              style={{
-                                color: "#9c514e",
-                                fontSize: "10px",
-                                textDecoration: "none",
-                                fontWeight: 500,
-                              }}
+                              className="workload-action-link assign"
                             >
                               Assign task
                             </Link>
                           ) : (
                             <span
-                              style={{
-                                color: "#aaa",
-                                fontSize: "10px",
-                                cursor: "not-allowed",
-                              }}
+                              className="workload-action-disabled"
                               title="Employee is at maximum capacity (3 active tasks)."
                             >
                               Max capacity
@@ -292,11 +275,7 @@ function Dashboard() {
                           )}
                           <Link
                             to={`/employees/${emp.employeeId}`}
-                            style={{
-                              color: "#687078",
-                              fontSize: "10px",
-                              textDecoration: "none",
-                            }}
+                            className="workload-action-link profile"
                           >
                             Profile
                           </Link>
@@ -307,7 +286,7 @@ function Dashboard() {
                 })
               ) : (
                 <tr>
-                  <td colSpan="6" style={{ textAlign: "center", padding: "20px" }}>
+                  <td colSpan="6" className="table-empty-cell">
                     No active employees found.
                   </td>
                 </tr>
