@@ -34,7 +34,14 @@ describe("ETM System Business Rules and API Tests", () => {
   let activeEmp1, activeEmp2, inactiveEmp, onLeaveEmp;
 
   before(async () => {
-    await connectDatabase();
+    const rawUri = process.env.TEST_MONGODB_URI || process.env.MONGODB_URI;
+    let testUri = rawUri;
+    if (rawUri && !process.env.TEST_MONGODB_URI) {
+      const [base, query] = rawUri.split("?");
+      const testBase = base.endsWith("/") ? `${base}orbit_test` : base.replace(/\/([^/]+)$/, "/$1_test");
+      testUri = query ? `${testBase}?${query}` : testBase;
+    }
+    await connectDatabase(testUri);
     await new Promise((resolve) => {
       server = app.listen(PORT, resolve);
     });
